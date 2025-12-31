@@ -1,0 +1,38 @@
+<!-- components/header.html -->
+<header class="sticky top-0 z-50 2xl:bg-black bg-[#00000080] 2xl:border-b border-[#222222]">
+    <div class="main-container">
+        <div class="flex items-center justify-between py-[15px]">
+            <a href="/" class="flex items-center gap-2">
+                <img src="/assets/images/logo.png" alt="MNK" class="w-[69px] h-[100px]">
+            </a>
+
+            <!-- Desktop nav -->
+            <nav id="desktopNav" class="hidden 2xl:flex items-center gap-6 text-[13px] text-white font-semibold"></nav>
+
+            <!-- Mobile hamburger -->
+            <button id="openMenuBtn" class="2xl:hidden block" aria-label="Open menu">
+                <!-- 3 lines icon -->
+                <img src="/assets/images/ThreeLinesIcon.png" alt="MNK" class="w-[40px] h-[40px]">
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile overlay + side drawer -->
+<div id="menuOverlay" class="fixed inset-0 z-[60] hidden bg-black/60 opacity-0 transition-opacity duration-300"></div>
+
+<aside id="sideMenu"
+    class="fixed right-0 top-0 z-[70] h-full 2xs:w-[375px] w-[320px] translate-x-full bg-[#0b0f14] border-l border-white/10 transition-transform duration-300 px-[15px] py-5">
+    <div class="flex items-center justify-between pb-[52px]">
+        <a href="/" class="flex items-center gap-2">
+            <img src="/assets/images/logo.png" alt="MNK" class="w-[62px] h-[90px]">
+        </a>
+
+        <button id="closeMenuBtn" class="" aria-label="Close menu">
+            <img src="/assets/images/CrossIcon.png" alt="MNK" class="w-[40px] h-[40px]">
+        </button>
+    </div>
+
+    <!-- Mobile nav rendered here -->
+    <nav id="mobileSideNav" class="text-[16px] font-semibold text-white font-robotto"></nav>
+</aside>

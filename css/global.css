@@ -1,0 +1,199 @@
+/* css/global.css */
+
+/* 1) Fonts (Design Guideline)
+   Headings: Roboto Condensed
+   Body: Montserrat
+   Title: Century Gothic
+*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+
+/* 2) Design Tokens */
+:root {
+    /* Fonts */
+    --ff-heading: "Roboto Condensed", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --ff-body: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --ff-title: "Century Gothic", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+    /* Colors (from your guideline image) */
+    --c-primary: #f55f18;
+    --c-paragraph: #BBBDC2;
+
+    --c-10252f: #10252f;
+    --c-2b353d: #2b353d;
+    --c-0d1014: #0d1014;
+
+    --c-neutral: #ffffff;
+    --c-icon: #86919e;
+
+    /* Styles */
+    --c-image-border: #282d2f;
+    --image-border-lg: 14px;
+    --image-border-sm: 7px;
+
+    /* Common UI */
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+
+    /* Background helpers */
+    --page-bg: var(--c-0d1014);
+    --surface-1: var(--c-10252f);
+    --surface-2: var(--c-2b353d);
+
+    /* If you still want “glass cards” */
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.08);
+}
+
+/* 3) Base styles */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--ff-body);
+    background: var(--page-bg);
+    color: rgba(255, 255, 255, 0.9);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff-heading);
+}
+
+/* Optional selection color */
+::selection {
+    background: rgba(245, 95, 24, 0.25);
+}
+
+/* 4) Your container (kept exactly as you wanted) */
+.main-container {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    /* mobile */
+}
+
+@media (min-width: 1024px) {
+    .main-container {
+        padding-inline: 84px;
+        /* desktop */
+    }
+}
+
+/* Webkit Browsers */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Apply the gradient to the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: var(--c-primary);
+    border-radius: 10px;
+}
+
+
+/* 5) Reusable helpers matching guideline styles */
+.text-icon {
+    color: var(--c-icon);
+}
+
+.text-primary {
+    color: var(--c-primary) !important;
+}
+
+.text-paragraph {
+    color: var(--c-paragraph);
+}
+
+.border-image-lg {
+    border: var(--image-border-lg) solid var(--c-image-border);
+    border-radius: var(--radius-md);
+}
+
+.border-image-sm {
+    border: var(--image-border-sm) solid var(--c-image-border);
+    border-radius: var(--radius-md);
+}
+
+/* Optional: a common “card” you can reuse (if you want) */
+.ui-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+}
+
+/* Optional: subtle divider */
+.ui-divider {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Global styles for disabled inputs */
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+    cursor: not-allowed !important;
+    /* Optional: Prevent interaction */
+    opacity: 0.6;
+    /* Optional: Reduce opacity to indicate the disabled state */
+}
+
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* For Edge and other Chromium-based browsers */
+input::-ms-reveal {
+    display: none;
+}
+
+.theme-btn {
+    padding: 16px 24px;
+    background: #0D1014;
+    color: var(--c-primary);
+    border: 1.5px solid var(--c-primary);
+    border-radius: 100px;
+    font-family: var(--ff-heading);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 640px) {
+    .theme-btn {
+        padding: 7px 20px;
+        border-width: 1px;
+        font-size: 12px;
+    }
+}
+
+.theme-btn:hover {
+    background: var(--c-primary);
+    color: #0D1014;
+}
