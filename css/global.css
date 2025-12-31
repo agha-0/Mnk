@@ -17,6 +17,7 @@
     /* Colors (from your guideline image) */
     --c-primary: #f55f18;
     --c-paragraph: #BBBDC2;
+    --c-main-bg: #13191F;
 
     --c-10252f: #10252f;
     --c-2b353d: #2b353d;
@@ -196,4 +197,24 @@ input::-ms-reveal {
 .theme-btn:hover {
     background: var(--c-primary);
     color: #0D1014;
+}
+
+/* list dot base */
+.wd-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    margin-top: 7px;
+    /* aligns with text nicely */
+    flex: 0 0 6px;
+}
+
+/* dot colors */
+.wd-dot--primary {
+    background: var(--c-primary);
+}
+
+/* optional: paragraph color for list items */
+.wd-li {
+    color: var(--c-paragraph);
 }

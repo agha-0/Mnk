@@ -5,6 +5,7 @@ window.tailwind.config = {
             colors: {
                 primary: "var(--c-primary)",
                 paragraph: "var(--c-paragraph)",
+                mainBg: "var(--c-main-bg)",
             },
             fontFamily: {
                 // use: class="font-robotto"
