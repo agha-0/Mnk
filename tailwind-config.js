@@ -6,6 +6,7 @@ window.tailwind.config = {
                 primary: "var(--c-primary)",
                 paragraph: "var(--c-paragraph)",
                 mainBg: "var(--c-main-bg)",
+                subBg: "var(--c-sub-bg)",
             },
             fontFamily: {
                 // use: class="font-robotto"

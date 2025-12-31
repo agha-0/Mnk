@@ -18,6 +18,7 @@
     --c-primary: #f55f18;
     --c-paragraph: #BBBDC2;
     --c-main-bg: #13191F;
+    --c-sub-bg: #2B333D;
 
     --c-10252f: #10252f;
     --c-2b353d: #2b353d;
@@ -50,6 +51,7 @@
 html,
 body {
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -217,4 +219,314 @@ input::-ms-reveal {
 /* optional: paragraph color for list items */
 .wd-li {
     color: var(--c-paragraph);
+}
+
+/* ---------- Who We've Done It For (Marquee) ---------- */
+.who-panel {
+    background: var(--c-main-bg);
+    position: relative;
+    overflow: hidden;
+    /* keeps glow inside the card */
+}
+
+.who-panel::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 85%;
+    height: 140%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+
+    /* warm glow */
+    background: radial-gradient(ellipse at center,
+            rgba(172, 113, 61, 0.28) 0%,
+            rgba(172, 113, 61, 0.14) 22%,
+            rgba(7, 18, 28, 0.00) 60%);
+}
+
+/* ensure your content stays above the glow */
+.who-panel>* {
+    position: relative;
+    z-index: 1;
+}
+
+.who-panel__head {
+    padding: 16px;
+    font-family: var(--ff-heading);
+}
+
+.who-item-box {
+    background: var(--c-0d1014);
+    border: 1px solid var(--c-sub-bg);
+}
+
+/* marquee */
+.marquee {
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 26s) linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+    /* works because we duplicate items 2x */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+/* ---------- Portfolio ---------- */
+.portfolio-panel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.12));
+}
+
+.portfolio-row+.portfolio-row {
+    margin-top: 28px;
+}
+
+@media (max-width: 768px) {
+    .portfolio-row+.portfolio-row {
+        margin-top: 18px;
+    }
+}
+
+.portfolio-arrow {
+    border-radius: 9999px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.portfolio-arrow:hover {
+    transform: translateY(-1px);
+}
+
+.portfolio-arrow:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.portfolio-viewport {
+    overflow: hidden;
+    margin-top: 14px;
+}
+
+.portfolio-track {
+    display: flex;
+    gap: 18px;
+    will-change: transform;
+    transition: transform 320ms ease;
+}
+
+@media (max-width: 768px) {
+    .portfolio-track {
+        gap: 12px;
+    }
+}
+
+/* thumb card */
+.portfolio-card {
+    position: relative;
+    flex: 0 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.portfolio-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05);
+}
+
+/* overlay play */
+.portfolio-play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+/* sizing like your design: 3 cards desktop, 1 card mobile */
+.portfolio-card {
+    border-radius: 10px;
+    height: 92px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .portfolio-card {
+        height: 227px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .portfolio-card {
+        height: 227px;
+    }
+}
+
+/* Modal */
+.portfolio-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+}
+
+.portfolio-modal.is-open {
+    display: block;
+}
+
+.portfolio-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.portfolio-modal__dialog {
+    position: relative;
+    width: min(920px, calc(100% - 32px));
+    aspect-ratio: 16 / 9;
+    margin: 7vh auto 0;
+    background: #000;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .portfolio-modal__dialog {
+        width: calc(100% - 20px);
+        margin-top: 10vh;
+        border-radius: 12px;
+    }
+}
+
+.portfolio-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-modal__close img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+/* optional utility if you need it elsewhere:
+   prevent x scroll without cutting bottom overflow */
+.overflow-x-clip {
+    overflow-x: clip;
+}
+
+/* ---------- Footer ---------- */
+.footer-wrap {
+    background: #15191F;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 1) Orange blur layer (as per Figma) */
+.footer-wrap::before {
+    content: "";
+    position: absolute;
+    width: 983px;
+    height: 983px;
+    left: 244px;
+    top: -944px;
+    background: var(--c-primary);
+    opacity: 0.10;
+    filter: blur(150px);
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.footer-top,
+.footer-bottom {
+    position: relative;
+    z-index: 1;
+    /* keep content above blur */
+}
+
+.footer-bottom {
+    background: #15191F;
+}
+
+.footer-link {
+    transition: opacity .2s ease, color .2s ease;
+    opacity: 0.85;
+}
+
+.footer-link:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+/* Mobile floating logo (centered on border line) */
+.footer-float-logo {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    width: 58px;
+    height: 58px;
+    z-index: 2;
+}
+
+@media (max-width: 767px) {
+    .footer-wrap::before {
+        opacity: 0.18;
+        /* was 0.10 */
+        top: -810px;
+        /* slightly lower so it shows more */
+        filter: blur(150px);
+        /* keep same blur */
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-float-logo {
+        display: none;
+    }
 }

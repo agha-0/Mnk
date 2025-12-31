@@ -1,0 +1,69 @@
+<!-- components/footer.html -->
+<footer class="footer-wrap">
+    <!-- top line -->
+    <div class="footer-top">
+        <div class="main-container py-6 md:py-8 md:pb-8 pb-10">
+            <p
+                class="text-center font-century text-[18px] md:text-[34px] leading-[26px] md:leading-[44px] text-white/90">
+                we Live <span class="text-primary">Sound</span> and <span class="text-primary">Music</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- bottom bar -->
+    <div class="footer-bottom border-t border-[#4E5560]">
+        <div class="main-container relative pt-10 pb-6 md:py-4">
+            <!-- Mobile floating logo (over border) -->
+            <img src="/assets/images/FooterLogo.svg" alt="MNK" class="footer-float-logo md:hidden" />
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4 gap-0">
+
+                <!-- Desktop left: logo + copyright -->
+                <div class="hidden md:flex items-center gap-3">
+                    <img src="/assets/images/FooterLogo.svg" alt="MNK"
+                        class="md:w-[50px] md:h-[50px] w-[24px] h-[24px]" />
+                    <p class="text-[13px] leading-[16px] text-white/55">
+                        © <span id="footerYear"></span> <span class="text-white">MNK Studios.</span>
+                        All Rights Reserved. Developed By Hashed System.
+                    </p>
+                </div>
+
+                <!-- Mobile socials (under logo like image) + Desktop socials right -->
+                <div class="order-1 md:order-3 flex items-center justify-center md:justify-end gap-2">
+                    <a class="footer-social" href="#" aria-label="Instagram">
+                        <img src="/assets/images/InstagramIcon.svg" alt=""
+                            class="md:w-[32px] md:h-[32px] w-[24px] h-[24px]" />
+                    </a>
+                    <a class="footer-social" href="#" aria-label="Facebook">
+                        <img src="/assets/images/FacebookIcon.svg" alt=""
+                            class="md:w-[32px] md:h-[32px] w-[24px] h-[24px]" />
+                    </a>
+                    <a class="footer-social" href="#" aria-label="LinkedIn">
+                        <img src="/assets/images/LinkedinIcon.svg" alt=""
+                            class="md:w-[32px] md:h-[32px] w-[24px] h-[24px]" />
+                    </a>
+                </div>
+
+                <!-- Links -->
+                <nav class="order-2 md:order-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1
+                    text-[11px] md:text-[13px] text-white md:mt-0 mt-3">
+                    <a href="#" class="footer-link">Terms &amp; Conditions</a>
+                    <span class="text-white/35">|</span>
+                    <a href="#contact" class="footer-link">Contact Us</a>
+                    <span class="text-white/35">|</span>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                </nav>
+
+                <!-- Mobile copyright (Developed By on next line) -->
+                <p class="order-3 md:hidden text-[11px] leading-[14px] text-paragraph text-center md:mt-0 mt-3">
+                    © <span id="footerYear"></span> <span class="text-white">MNK Studios.</span> All Rights
+                    Reserved.<br class="md:hidden" />
+                </p>
+                <span
+                    class="order-3 md:hidden text-[11px] leading-[14px] text-paragraph text-center md:mt-0 mt-3">Developed
+                    By Hashed System.</span>
+
+            </div>
+        </div>
+    </div>
+</footer>
