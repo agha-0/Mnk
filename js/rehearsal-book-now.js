@@ -131,10 +131,18 @@
         if (!grid || !label || !modal || !slotsGrid || !confirmBtn) return;
 
         const today = startOfDay(new Date());
-        let view = { y: today.getFullYear(), mIndex: today.getMonth() }; // current month by default
-        let activeDateKey = keyFromDate(today); // current date primary
-        let pickedSlotId = null; // slot selected in modal (not confirmed)
-        const selectedSlotMap = new Map(); // id -> {dateKey, label}
+        let view = { y: today.getFullYear(), mIndex: today.getMonth() };
+        let activeDateKey = keyFromDate(today);
+
+        // MULTI PICKED (in modal, before confirm)
+        const pickedSet = new Set(); // slot ids picked (toggle)
+        // CONFIRMED / ADDED
+        const selectedSlotMap = new Map(); // id -> {id, dateKey, label}
+
+        function toast(msg, type = "warn") {
+            if (typeof window.mnkToast === "function") window.mnkToast(msg, type);
+            else alert(msg);
+        }
 
         function syncSessionUI() {
             if (sessionStudio) sessionStudio.textContent = studioValueEl?.value || "None";
@@ -166,9 +174,10 @@
                 btn.addEventListener("click", () => {
                     const id = Number(btn.getAttribute("data-remove-slot"));
                     selectedSlotMap.delete(id);
-                    // re-render modal slots state if open
+                    // If modal open, re-render to remove green tick + enable again if applicable
                     if (modal.classList.contains("is-open")) renderSlotsLastPayload();
                     syncSessionUI();
+                    toast("Slot removed.", "warn");
                 });
             });
         }
@@ -182,7 +191,7 @@
             modal.classList.remove("is-open");
             modal.setAttribute("aria-hidden", "true");
             document.body.style.overflow = "";
-            pickedSlotId = null;
+            pickedSet.clear();
             confirmBtn.disabled = true;
         }
 
@@ -193,26 +202,32 @@
             if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
         });
 
-        // keep last fetched slots so remove/add updates button states inside modal
+        // keep last fetched slots
         let lastSlots = [];
         let lastDateKey = null;
 
-        function slotIsDisabled(slot, dateKey) {
-            // unavailable from API
-            if (slot.status !== 1) return true;
-            if (slot.not === 1) return true;
+        // differentiate disabled vs added
+        function slotState(slot, dateKey) {
+            // already added (confirmed)
+            if (selectedSlotMap.has(slot.id)) return { state: "added" };
 
-            // already added
-            if (selectedSlotMap.has(slot.id)) return true;
+            // API unavailable
+            if (slot.status !== 1) return { state: "disabled" };
+            if (slot.not === 1) return { state: "disabled" };
 
-            // if date is today: start time must be > current time
+            // time-based disabling for today
             const d = new Date(dateKey + "T00:00:00");
             const isToday = startOfDay(d).getTime() === today.getTime();
             if (isToday) {
                 const startMins = parseTimeToMinutes(slot.start_time);
-                if (startMins <= nowMinutes()) return true;
+                if (startMins <= nowMinutes()) return { state: "disabled" };
             }
-            return false;
+
+            return { state: "active" };
+        }
+
+        function updateConfirmState() {
+            confirmBtn.disabled = pickedSet.size === 0;
         }
 
         function renderSlots(dateKey, slots) {
@@ -227,85 +242,98 @@
 
             slots.forEach((slot) => {
                 const labelText = `${slot.start_time} - ${slot.end_time}`;
-                const disabled = slotIsDisabled(slot, dateKey);
+                const st = slotState(slot, dateKey);
 
                 const b = document.createElement("button");
                 b.type = "button";
-                b.className = `slot ${disabled ? "is-disabled" : ""} ${pickedSlotId === slot.id ? "is-picked" : ""}`;
+                b.className = "slot";
                 b.textContent = labelText;
 
-                if (!disabled) {
-                    b.addEventListener("click", () => {
-                        // pick (not confirm)
-                        pickedSlotId = slot.id;
-                        confirmBtn.disabled = false;
+                // styles
+                if (st.state === "disabled") b.classList.add("is-disabled");
+                if (st.state === "added") b.classList.add("is-added"); // ✅ green tick
+                if (pickedSet.has(slot.id)) b.classList.add("is-picked");
 
-                        // repaint
-                        $$(".slot", slotsGrid).forEach((x) => x.classList.remove("is-picked"));
-                        b.classList.add("is-picked");
+                // click (only active)
+                if (st.state === "active") {
+                    b.addEventListener("click", () => {
+                        // toggle pick (multi)
+                        if (pickedSet.has(slot.id)) pickedSet.delete(slot.id);
+                        else pickedSet.add(slot.id);
+
+                        // repaint picked styles quickly
+                        b.classList.toggle("is-picked", pickedSet.has(slot.id));
+                        updateConfirmState();
                     });
                 }
 
                 slotsGrid.appendChild(b);
             });
 
-            // update session panel
+            updateConfirmState();
             syncSessionUI();
         }
 
         function renderSlotsLastPayload() {
             if (!lastDateKey) return;
+            // if user removed slot, make sure pickedSet doesn't hold removed id confusion
+            pickedSet.forEach((id) => {
+                if (selectedSlotMap.has(id)) pickedSet.delete(id);
+            });
             renderSlots(lastDateKey, lastSlots);
         }
 
         async function openSlotsForDate(dateKey) {
-            // must have studio
             const studioVal = studioValueEl?.value?.trim();
             if (!studioVal) {
-                mnkToast("Please select studio first.", "error");
+                toast("Please select studio first.", "warn");
                 return;
             }
 
-            // update session studio label instantly
             if (sessionStudio) sessionStudio.textContent = studioVal;
 
-            // show loader + open modal
-            slotsGrid.innerHTML = "";
-            confirmBtn.disabled = true;
-            pickedSlotId = null;
+            pickedSet.clear();
+            updateConfirmState();
 
+            slotsGrid.innerHTML = "";
             slotsLoader?.classList.remove("hidden");
             openModal();
 
-            // fetch slots (static now, API-ready)
             try {
                 const slots = await fetchSlotsApiLike(dateKey, studioVal);
                 slotsLoader?.classList.add("hidden");
                 renderSlots(dateKey, slots);
             } catch (err) {
                 slotsLoader?.classList.add("hidden");
-                mnkToast("Failed to load slots. Please try again.");
+                toast("Failed to load slots. Please try again.", "warn");
             }
         }
 
+        // CONFIRM: add all picked at once
         confirmBtn.addEventListener("click", () => {
-            if (!pickedSlotId || !lastDateKey) return;
+            if (!lastDateKey || pickedSet.size === 0) return;
 
-            const slot = lastSlots.find((s) => s.id === pickedSlotId);
-            if (!slot) return;
+            let addedCount = 0;
 
-            selectedSlotMap.set(slot.id, {
-                id: slot.id,
-                dateKey: lastDateKey,
-                label: `${slot.start_time} - ${slot.end_time}`,
+            pickedSet.forEach((id) => {
+                const slot = lastSlots.find((s) => s.id === id);
+                if (!slot) return;
+
+                selectedSlotMap.set(slot.id, {
+                    id: slot.id,
+                    dateKey: lastDateKey,
+                    label: `${slot.start_time} - ${slot.end_time}`,
+                });
+                addedCount++;
             });
 
-            // after confirm: reset pick + rerender (so it becomes disabled + cut line)
-            pickedSlotId = null;
-            confirmBtn.disabled = true;
+            pickedSet.clear();
+            updateConfirmState();
             renderSlotsLastPayload();
             syncSessionUI();
-            mnkToast("Slot added to session.");
+
+            toast(addedCount > 1 ? `${addedCount} slots added.` : "Slot added.", "success");
+            closeModal();
         });
 
         // ---------- Calendar render ----------
@@ -314,10 +342,7 @@
             grid.innerHTML = "";
 
             const first = new Date(view.y, view.mIndex, 1);
-            const firstDay = first.getDay(); // 0 Sun
-            const daysInMonth = new Date(view.y, view.mIndex + 1, 0).getDate();
-
-            // 6 weeks grid (42)
+            const firstDay = first.getDay();
             const start = new Date(view.y, view.mIndex, 1 - firstDay);
 
             for (let i = 0; i < 42; i++) {
@@ -330,18 +355,16 @@
                 const btn = document.createElement("button");
                 btn.type = "button";
                 btn.className = "cal-day";
-
                 btn.textContent = String(d.getDate());
 
                 if (!inMonth) btn.classList.add("is-out");
 
-                // disable past dates (including out-of-month past)
                 const isPast = startOfDay(d).getTime() < today.getTime();
                 const isDisabled = isPast || !inMonth;
 
                 if (isDisabled) btn.classList.add("is-disabled");
 
-                // today highlight (primary)
+                // today highlight
                 if (dKey === keyFromDate(today)) btn.classList.add("is-today");
 
                 // selected outline
@@ -350,14 +373,10 @@
                 if (!isDisabled) {
                     btn.addEventListener("click", () => {
                         activeDateKey = dKey;
-
-                        // update selected styling
                         $$(".cal-day", grid).forEach((x) => x.classList.remove("is-selected"));
                         btn.classList.add("is-selected");
 
-                        // update session date UI
                         if (sessionDate) sessionDate.textContent = activeDateKey;
-
                         openSlotsForDate(dKey);
                     });
                 }
@@ -391,18 +410,16 @@
         if (submitBtn) {
             submitBtn.addEventListener("click", () => {
                 const studioVal = studioValueEl?.value?.trim();
-                const notes = $("textarea.book-input")?.value?.trim(); // your booking notes textarea uses book-input
+                const notes = $("#bookingNotes")?.value?.trim();
                 const bandName = $("#bandNameInput")?.value?.trim();
-
-                // only slots from active date OR any? you can change later
                 const anySlots = selectedSlotMap.size > 0;
 
-                if (!studioVal) return mnkToast("Select studio is required.");
-                if (!notes) return mnkToast("Booking Notes are required.");
-                if (!bandName) return mnkToast("Band Name is required.");
-                if (!anySlots) return mnkToast("Please select at least one slot.");
+                if (!studioVal) return toast("Select studio is required.", "warn");
+                if (!notes) return toast("Booking Notes are required.", "warn");
+                if (!bandName) return toast("Band Name is required.", "warn");
+                if (!anySlots) return toast("Please select at least one slot.", "warn");
 
-                mnkToast("Form looks good (submission wiring comes next).", "warn");
+                toast("Form looks good (submission wiring comes next).", "ok");
             });
         }
     }

@@ -825,28 +825,70 @@ input::-ms-reveal {
     background: #2C353F;
     color: #fff;
     font-size: 13px;
-    position: relative;
+    transition: .15s ease;
 }
 
-.slot.is-selected {
-    background: var(--c-primary);
-    border-color: var(--c-primary);
-    color: #0D1014;
-    font-weight: 900;
+@media (max-width:768px) {
+    .slot {
+        font-size: 8px;
+    }
 }
 
+.slot .slot-label {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* PICKED (in modal, before confirm) */
 .slot.is-picked {
     border-color: var(--c-primary);
+    outline: 2px solid rgba(245, 95, 24, .35);
+    outline-offset: -2px;
     background: var(--c-primary);
     color: #fff;
+    font-weight: 700;
 }
 
-.slot.is-disabled {
-    background: rgba(255, 255, 255, .02);
-    color: rgba(255, 255, 255, .35);
+/* ADDED (already confirmed & saved in session) */
+.slot.is-added {
+    border-color: rgba(34, 197, 94, .55);
+    background: rgba(34, 197, 94, .16);
+    color: #fff;
     pointer-events: none;
 }
 
+/* Tick only visible for ADDED (inline, not absolute) */
+.slot .slot-tick {
+    display: none;
+}
+
+.slot.is-added .slot-tick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #22c55e;
+    color: #0D1014;
+    font-weight: 900;
+    font-size: 13px;
+}
+
+/* Disabled (unavailable/past/time-based) */
+.slot.is-disabled {
+    background: rgba(255, 255, 255, .02);
+    border-color: rgba(255, 255, 255, .08);
+    color: rgba(255, 255, 255, .35);
+    pointer-events: none;
+    position: relative;
+    /* for strike line */
+}
+
+/* Strike ONLY for disabled */
 .slot.is-disabled::after {
     content: "";
     position: absolute;
