@@ -4,9 +4,11 @@ window.tailwind.config = {
         extend: {
             colors: {
                 primary: "var(--c-primary)",
+                secondary: "var(--c-secondary)",
                 paragraph: "var(--c-paragraph)",
                 mainBg: "var(--c-main-bg)",
                 subBg: "var(--c-sub-bg)",
+                topMsgBg: "var(--c-top-msg-bg)",
             },
             fontFamily: {
                 // use: class="font-robotto"

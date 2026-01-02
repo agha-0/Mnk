@@ -16,9 +16,11 @@
 
     /* Colors (from your guideline image) */
     --c-primary: #f55f18;
+    --c-secondary: #2B333D;
     --c-paragraph: #BBBDC2;
     --c-main-bg: #13191F;
     --c-sub-bg: #2B333D;
+    --c-top-msg-bg: #8D2F18;
 
     --c-10252f: #10252f;
     --c-2b353d: #2b353d;
@@ -529,4 +531,264 @@ input::-ms-reveal {
     .footer-float-logo {
         display: none;
     }
+}
+
+/* --- Studios buttons + active border (minimal custom) --- */
+.studio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 10px 18px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    white-space: nowrap;
+    transition: all .2s ease;
+}
+
+.studio-btn--outline {
+    color: var(--c-primary);
+    border: 1px solid var(--c-primary);
+    background: transparent;
+}
+
+.studio-btn--outline:hover {
+    background: var(--c-primary);
+    color: #fff;
+}
+
+.studio-btn--fill {
+    color: #fff;
+    border: 1px solid var(--c-primary);
+    background: var(--c-primary);
+}
+
+.studio-btn--fill:hover {
+    filter: brightness(1.05);
+    background: transparent;
+    color: var(--c-primary);
+}
+
+.studio-card--active {
+    border: 2px solid var(--c-primary) !important;
+}
+
+/* Studios: hide scrollbar + smoother swipe */
+.studio-grid {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.studio-grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+/* ---------- Book Now ---------- */
+.book-tab {
+    padding: 14px 10px;
+    font-family: var(--ff-heading);
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    background: var(--c-main-bg);
+    transition: .2s ease;
+    line-height: 24px;
+    border-bottom: 1px solid var(--c-primary);
+}
+
+.book-tab:last-child {
+    border-right: 0
+}
+
+.book-tab.is-active {
+    background: var(--c-primary);
+    color: #fff;
+}
+
+.book-row {
+    display: grid;
+    grid-template-columns: 250px 1fr 170px 120px;
+    gap: 14px;
+    align-items: center;
+    background: var(--c-secondary);
+    padding: 36px 30px;
+}
+
+@media (max-width: 768px) {
+    .book-tab {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .book-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .book-row__cta {
+        justify-self: start;
+    }
+}
+
+.book-buy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--c-primary);
+    color: #fff;
+    border: 1px solid var(--c-primary);
+    border-radius: 9999px;
+    padding: 16px 24px;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 16px;
+    white-space: nowrap;
+}
+
+.book-buy:hover {
+    filter: brightness(1.02);
+}
+
+@media (max-width: 768px) {
+    .book-buy {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 7px 22px;
+        line-height: 18px;
+    }
+}
+
+.cal-nav {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    color: rgba(255, 255, 255, .75);
+}
+
+.cal-nav:hover {
+    color: #fff
+}
+
+.cal-day {
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, .02);
+    color: rgba(255, 255, 255, .75);
+    font-size: 12px;
+}
+
+.cal-day:hover {
+    border-color: rgba(255, 255, 255, .18)
+}
+
+.cal-day.is-muted {
+    opacity: .25;
+    pointer-events: none;
+}
+
+.cal-day.is-active {
+    background: var(--c-primary);
+    border-color: var(--c-primary);
+    color: #0D1014;
+    font-weight: 800;
+}
+
+.book-input,
+.dd-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .10);
+    color: rgba(255, 255, 255, .85);
+    border-radius: 6px;
+    padding: 12px 12px;
+    font-size: 12px;
+    outline: none;
+}
+
+.dd-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dd-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    background: #0E1319;
+    border: 1px solid rgba(255, 255, 255, .10);
+    z-index: 30;
+}
+
+.dd-item {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, .78);
+    border-top: 1px solid rgba(255, 255, 255, .06);
+}
+
+.dd-item:first-child {
+    border-top: 0
+}
+
+.dd-item:hover {
+    background: rgba(245, 95, 24, .14);
+    color: #fff;
+}
+
+/* slots modal */
+.slots-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+}
+
+.slots-modal.is-open {
+    display: block;
+}
+
+.slots-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .70);
+}
+
+.slots-dialog {
+    position: relative;
+    width: min(520px, calc(100% - 24px));
+    margin: 10vh auto 0;
+    background: #0E1319;
+    border: 1px solid rgba(255, 255, 255, .12);
+}
+
+.slot {
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, .10);
+    background: rgba(255, 255, 255, .04);
+    color: rgba(255, 255, 255, .80);
+    font-size: 11px;
+}
+
+.slot.is-disabled {
+    background: rgba(255, 255, 255, .02);
+    color: rgba(255, 255, 255, .35);
+    pointer-events: none;
+}
+
+.slot.is-selected {
+    background: var(--c-primary);
+    border-color: var(--c-primary);
+    color: #0D1014;
+    font-weight: 900;
 }

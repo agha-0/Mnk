@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio — Home</title>
+
+    <link rel="stylesheet" href="/css/global.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/tailwind-config.js"></script>
+</head>
+
+<body class="page-bg">
+    <!-- Top Message -->
+    <section class="bg-topMsgBg py-[17px]">
+        <div class="main-container">
+            <p class="text-[13px] leading-[16px] text-white text-center">
+                Happy hour offer! Get 20% off band rehearsals at only <span class="font-semibold">AED 188</span> per
+                hour on <span class="font-semibold">weekdays</span> from <span class="font-semibold">10AM to 4PM.</span>
+                Discount auto-applied at checkout.
+            </p>
+        </div>
+    </section>
+
+    <!-- Header -->
+    <div id="headerMount"></div>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-[#07090C] overflow-x-clip md:pb-[50px] pb-[29px]">
+        <!-- Image area -->
+        <div class="relative">
+            <!-- side waveform (desktop) -->
+            <img src="/assets/images/RehersalStudios/RehersalStudiosBehind.svg" alt=""
+                class="pointer-events-none absolute left-0 top-1/2 hidden -translate-y-1/2 md:block" />
+            <img src="/assets/images/RehersalStudios/RehersalStudiosBehind.svg" alt=""
+                class="pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 md:block rotate-180" />
+
+            <!-- main hero image (center) -->
+            <div class="relative mx-auto w-full md:max-w-[1040px]">
+                <img src="/assets/images/RehersalStudios/RehersalStudiosHeroImg.webp" alt="Rehearsal Studios"
+                    class="w-full object-cover md:h-[500px] h-[260px]" />
+            </div>
+
+            <!-- subtle  -->
+            <div class="pointer-events-none absolute inset-x-0 md:-bottom-6 -bottom-4 text-center">
+                <h1
+                    class="font-medium uppercase text-white md:text-[44px] text-[28px] md:leading-[54px] leading-[34px]">
+                    REHEARSAL STUDIOS
+                </h1>
+
+            </div>
+        </div>
+        <div class="main-container">
+            <!-- panel -->
+            <div class="relative">
+                <!--  button -->
+                <div class="text-center md:pt-8 pt-6">
+                    <button class="theme-btn mx-auto mt-4 md:mt-5 !py-[10px] !px-[26px] md:!py-[16px] md:!px-[30px]">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studios Section -->
+    <section class="relative md:py-[60px] py-[34px]">
+        <div class="main-container">
+            <div class="flex justify-center">
+                <!-- TRACK / GRID -->
+                <div id="studioCarousel" class="
+          studio-track
+          w-full
+
+          /* desktop grid */
+          md:grid md:grid-cols-3 md:gap-[22px] md:overflow-visible
+
+          /* mobile carousel */
+          grid grid-flow-col auto-cols-[85%] gap-4
+          overflow-x-auto overscroll-x-contain
+          snap-x snap-mandatory scroll-smooth
+
+          /* gutters so center snap looks right */
+          px-4 -mx-4 scroll-px-4
+          pb-2
+        ">
+                    <!-- Studio S -->
+                    <article class="studio-card w-full bg-mainBg overflow-hidden snap-center">
+                        <div class="h-[255px] w-full overflow-hidden">
+                            <img src="/assets/images/RehersalStudios/StudioS.webp" alt="Studio S"
+                                class="w-full h-full object-cover block" />
+                        </div>
+
+                        <div class="px-5 py-[18px] flex items-center justify-between gap-4 bg-mainBg">
+                            <p class="font-bold text-[18px] text-white/90">Studio S</p>
+                            <a href="#" class="studio-btn studio-btn--outline">View Details</a>
+                        </div>
+                    </article>
+
+                    <!-- Studio M (active) -->
+                    <article class="studio-card studio-card--active w-full bg-mainBg overflow-hidden snap-center">
+                        <div class="h-[255px] w-full overflow-hidden">
+                            <img src="/assets/images/RehersalStudios/StudioM.webp" alt="Studio M"
+                                class="w-full h-full object-cover block" />
+                        </div>
+
+                        <div class="px-4 md:px-5 py-4 md:py-[18px] flex items-center justify-between gap-4 bg-mainBg">
+                            <p class="font-bold text-[18px] text-white/90">Studio M</p>
+                            <a href="#" class="studio-btn studio-btn--fill">View Details</a>
+                        </div>
+                    </article>
+
+                    <!-- Studio B -->
+                    <article class="studio-card w-full bg-mainBg overflow-hidden snap-center">
+                        <div class="h-[255px] w-full overflow-hidden">
+                            <img src="/assets/images/RehersalStudios/StudioB.webp" alt="Studio B"
+                                class="w-full h-full object-cover block" />
+                        </div>
+
+                        <div class="px-5 py-[18px] flex items-center justify-between gap-4 bg-mainBg">
+                            <p class="font-bold text-[18px] text-white/90">Studio B</p>
+                            <a href="#" class="studio-btn studio-btn--outline">View Details</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redefined rehearsal space -->
+    <section class="relative md:pb-[70px] pb-[34px]">
+        <div class="main-container">
+            <div class="grid md:grid-cols-3 grid-cols-1 md:gap-6 gap-5 items-start">
+                <!-- Left -->
+                <div class="space-y-3">
+                    <h3 class="text-primary font-semibold md:text-[30px] text-[24px] md:leading-[30px] leading-[28px]">
+                        At MNK Studios,
+                    </h3>
+
+                    <h2 class="font-semibold text-white md:text-[40px] text-[30px] md:leading-[50px] leading-[40px]">
+                        We’ve redefined what a rehearsal space can be.
+                    </h2>
+                </div>
+
+                <!-- Right -->
+                <div
+                    class="space-y-4 md:pt-1 md:col-span-2 col-span-1 text-paragraph text-[13px] md:text-[16px] leading-[20px] md:leading-[28px]">
+                    <p>
+                        At MNK Studios, we’ve redefined what a rehearsal space can be.
+                    </p>
+
+                    <p>
+                        Our three purpose-built live studios in Dubai are fully soundproofed and acoustically treated,
+                        designed to
+                        deliver the perfect environment for musicians to create, rehearse, and record with ease.
+                    </p>
+
+                    <p>
+                        Each room is pre-miked and ready to play, featuring professional-grade drums, amplifiers, and
+                        microphones. All you need to bring are your guitars, pedals, and cymbals. The setup is seamless
+                        with the
+                        aid of our team of professional audio engineers, letting you focus entirely on your sound.
+                    </p>
+
+                    <p>
+                        We include live stereo recording with every session free of charge and offer multitrack
+                        recording as an
+                        add-on for artists who want to capture every detail of their performance.
+                    </p>
+
+                    <p>
+                        Need extra gear? We also rent out gear upon request. Just reach out for availability and rates.
+                    </p>
+
+                </div>
+            </div>
+            <!-- wave -->
+            <div class="md:pt-[50px] pt-3 flex items-center justify-center">
+                <img src="/assets/images/RehersalStudios/RehersalStudiosWave.svg" alt="" class="" />
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK NOW -->
+    <section class="relative md:pb-[80px] pb-[40px]">
+        <div class="main-container">
+            <h1
+                class="font-medium lg:text-[50px] md:text-[36px] text-[30px] uppercase lg:leading-[60px] leading-[40px] text-center">
+                Book Now
+            </h1>
+
+            <!-- notes -->
+            <div
+                class="md:mt-[50px] mt-[10px] text-paragraph text-[13px] md:text-[16px] md:leading-[28px] leading-[20px] space-y-1">
+                <p>* Rates apply to independent artists only.</p>
+                <p>* Artists represented by an event company or that have a big international following, reach out to us
+                    for tailored rates.</p>
+            </div>
+
+            <!-- tabs -->
+            <div class="md:mt-[50px] mt-[10px] flex flex-col gap-5">
+                <div class="grid grid-cols-3 gap-3">
+                    <button class="book-tab is-active" type="button" data-book-tab="packages">Rehearsal
+                        Packages</button>
+                    <button class="book-tab" type="button" data-book-tab="single">Book Single Sessions</button>
+                    <button class="book-tab" type="button" data-book-tab="member">New Member</button>
+                </div>
+
+                <!-- PANELS WRAP -->
+                <div class="md:px-[30px] px-4 md:py-[50px] py-5 bg-mainBg">
+                    <!-- ============ TAB 1: PACKAGES ============ -->
+                    <div class="book-panel" data-book-panel="packages">
+                        <h3
+                            class="md:text-center font-medium text-white md:text-[30px] md:leading-[40px] leading-[28px]">
+                            Studio S &amp; M
+                        </h3>
+
+                        <div class="md:mt-5 mt-3 space-y-3">
+                            <!-- row -->
+                            <div class="book-row">
+                                <div class="book-row__left">
+                                    <p class="text-white font-medium md:text-[30px] text-[16px] leading-[40px]">Basement
+                                    </p>
+                                    <p class="text-white text-[14px] md:text-[16px] md:leading-[28px] leading-[20px]">Up
+                                        to 7 Musicians
+                                    </p>
+                                </div>
+
+                                <div class="book-row__mid">
+                                    <ul
+                                        class="text-paragraph text-[11px] md:text-[16px] md:leading-[28px] leading-[20px] space-y-1">
+                                        <li class="flex items-start gap-4">
+                                            <span class="h-[2px] w-[5px] rounded bg-white/35 shrink-0 mt-3"></span>
+
+                                            <span>
+                                                8 Hours
+                                                <span class="block text-white/45">
+                                                    (Valid for 30 days from your first rehearsal)
+                                                </span>
+                                            </span>
+                                        </li>
+
+                                        <li class="flex items-start gap-4">
+                                            <span class="h-[2px] w-[5px] rounded bg-white/35 shrink-0 mt-3"></span>
+                                            <span class="text-primary font-semibold">AED 200 Per Hour</span>
+                                        </li>
+                                        <li class="flex items-start gap-4">
+                                            <span class="h-[2px] w-[5px] rounded bg-white/35 shrink-0 mt-3"></span>
+                                            On-the-Go Stereo Recording
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="book-row__right">
+                                    <p class="text-white font-medium md:text-[30px] text-[16px] leading-[40px]">
+                                        AED 1,600
+                                    </p>
+                                    <p
+                                        class="text-paragraph text-[14px] md:text-[16px] md:leading-[28px] leading-[20px] md:pl-4">
+                                        Total Amount
+                                    </p>
+                                </div>
+
+                                <div class="book-row__cta">
+                                    <a class="book-buy" href="/book-rehearsal-packages.html">Buy Now</a>
+                                </div>
+                            </div>
+
+                            <!-- row -->
+                            <div class="book-row">
+                                <div class="book-row__left">
+                                    <p class="text-white font-medium md:text-[30px] text-[16px] leading-[40px]">
+                                        Gig
+                                    </p>
+                                    <p class="text-white text-[14px] md:text-[16px] md:leading-[28px] leading-[20px]">
+                                        Up to 7 Musicians
+                                    </p>
+                                </div>
+
+                                <div class="book-row__mid">
+                                    <ul
+                                        class="text-paragraph text-[11px] md:text-[16px] md:leading-[28px] leading-[20px] space-y-1">
+
+                                        <li class="flex items-start gap-4">
+                                            <span class="h-[2px] w-[5px] rounded bg-white/35 shrink-0 mt-3"></span>
+                                            <span>
+                                                12 Hours
+                                                <span class="block text-white/45">
+                                                    (Valid for 30 days from your first rehearsal)
+                                                </span>
+                                            </span>
+                                        </li>
+
+                                        <li class="flex items-start gap-4">
+                                            <span class="h-[2px] w-[5px] rounded bg-white/35 shrink-0 mt-3"></span>
+                                            <span class="text-primary font-semibold">
+                                                AED 187.5 Per Hour
+                                            </span>
+                                        </li>
+
+                                        <li class="flex items-start gap-4">
+                                            <span class="h-[2px] w-[5px] rounded bg-white/35 shrink-0 mt-3"></span>
+                                            On-the-Go Stereo Recording
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="book-row__right">
+                                    <p class="text-white font-medium md:text-[30px] text-[16px] leading-[40px]">
+                                        AED 2,250
+                                    </p>
+                                    <p
+                                        class="text-paragraph text-[14px] md:text-[16px] md:leading-[28px] leading-[20px] md:pl-4">
+                                        Total Amount
+                                    </p>
+                                </div>
+
+                                <div class="book-row__cta">
+                                    <a class="book-buy" href="/book-rehearsal-packages.html">Buy Now</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Terms -->
+                        <div class="md:mt-[50px] mt-6">
+                            <h3 class="font-medium text-white md:text-[30px] md:leading-[40px] leading-[28px]">
+                                Terms &amp; Conditions</h3>
+                            <ul
+                                class="mt-3 text-paragraph text-[14px] md:text-[16px] md:leading-[28px] leading-[20px] space-y-2">
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    Rates are exclusive of 5% VAT.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    Booking hours must be used within 30 days from the first rehearsal. Unused hours
+                                    cannot be carried over.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    You may reschedule your booking up to 48 hours before the commencement time.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    Last-minute cancellations are not entertained. No refunds are allowed.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    Cymbals and other rental equipment are not included in the booking fee and are
+                                    charged separately. Please contact us for availability and rates.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    Casual video recording for personal social media or EPKs is permitted. Professional
+                                    shoots with a production crew are not included in these rates. Please contact us for
+                                    professional shoot arrangements.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    Rates do not apply to corporate hires, artists represented by event companies, or
+                                    artists with a large international following. Please contact us for tailored
+                                    pricing.
+                                </li>
+
+                                <li class="flex gap-2">
+                                    <span class="mt-[12px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>
+                                    You are required to comply with all facility regulations, including room capacity.
+                                    Please inform us in advance if you plan to bring guests beyond the stated capacity
+                                    of the room.
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <!-- ============ TAB 2: SINGLE SESSION ============ -->
+                    <div class="book-panel hidden" data-book-panel="single">
+                        <div class="grid lg:grid-cols-2 grid-cols-1 md:gap-6 gap-4 items-start">
+                            <!-- LEFT: Calendar + radios + terms -->
+                            <div class="bg-[#0E1319] border border-white/10">
+                                <!-- calendar header -->
+                                <div class="flex items-center justify-between px-4 pt-4">
+                                    <button class="cal-nav" type="button" data-cal-nav="prev"
+                                        aria-label="Previous month">‹</button>
+                                    <p class="text-white/85 text-[12px] md:text-[13px] font-semibold" id="calLabel">
+                                        December 2025</p>
+                                    <button class="cal-nav" type="button" data-cal-nav="next"
+                                        aria-label="Next month">›</button>
+                                </div>
+
+                                <!-- weekday -->
+                                <div class="grid grid-cols-7 px-4 pt-3 text-white/45 text-[10px]">
+                                    <div class="py-2 text-center">S</div>
+                                    <div class="py-2 text-center">M</div>
+                                    <div class="py-2 text-center">T</div>
+                                    <div class="py-2 text-center">W</div>
+                                    <div class="py-2 text-center">T</div>
+                                    <div class="py-2 text-center">F</div>
+                                    <div class="py-2 text-center">S</div>
+                                </div>
+
+                                <!-- days -->
+                                <div class="px-4 pb-4">
+                                    <div id="calGrid" class="grid grid-cols-7 gap-2"></div>
+                                </div>
+
+                                <!-- options -->
+                                <div class="px-4 pb-4 text-white/80 text-[11px] md:text-[12px]">
+                                    <div class="pt-2 space-y-3">
+                                        <div>
+                                            <p class="text-white/70">Do you require a Cymbal Set for your session? *</p>
+                                            <label class="mt-2 flex items-center gap-2">
+                                                <input type="radio" name="cymbals" value="no" checked />
+                                                <span class="text-white/65">No, I am bringing my own cymbals</span>
+                                            </label>
+                                            <label class="mt-2 flex items-center gap-2">
+                                                <input type="radio" name="cymbals" value="yes" />
+                                                <span class="text-white/65">Yes, I would like to rent them (BBX or XSX)
+                                                    at AED 10 excl. VAT per hour.</span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <p class="text-white/70">Are you filming a video? *</p>
+                                            <label class="mt-2 flex items-center gap-2">
+                                                <input type="radio" name="filming" value="no" checked />
+                                                <span class="text-white/65">No</span>
+                                            </label>
+                                            <label class="mt-2 flex items-center gap-2">
+                                                <input type="radio" name="filming" value="yes" />
+                                                <span class="text-white/65">Yes</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-5">
+                                        <h3 class="text-white font-semibold text-[14px]">Terms &amp; Conditions</h3>
+                                        <ul class="mt-3 text-white/55 text-[11px] leading-[18px] space-y-2">
+                                            <li class="flex gap-2"><span
+                                                    class="mt-[7px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>Rates
+                                                are excluding 5% VAT.</li>
+                                            <li class="flex gap-2"><span
+                                                    class="mt-[7px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>Stereo
+                                                recording of your rehearsal is provided free of charge.</li>
+                                            <li class="flex gap-2"><span
+                                                    class="mt-[7px] h-[4px] w-[4px] rounded-full bg-white/30 shrink-0"></span>Late
+                                                cancellations are not entertained. No refunds allowed.</li>
+                                        </ul>
+
+                                        <div class="mt-4">
+                                            <button class="book-buy !px-6 !py-[10px]" type="button">Buy Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT: form -->
+                            <div class="space-y-4">
+                                <!-- Select studio (custom dropdown) -->
+                                <div class="relative" data-dd="studio">
+                                    <label class="block text-white/70 text-[11px] mb-2">Select studio *</label>
+                                    <button class="dd-btn" type="button" data-dd-btn>
+                                        <span data-dd-label>Select studio *</span>
+                                        <span class="text-white/50">▾</span>
+                                    </button>
+                                    <div class="dd-menu hidden" data-dd-menu>
+                                        <button type="button" class="dd-item"
+                                            data-dd-item="Studio M (Single Musician) - AED 175 / Hour">Studio M (Single
+                                            Musician) - AED 175 / Hour</button>
+                                        <button type="button" class="dd-item"
+                                            data-dd-item="Studio M (Up to 7 Musicians) - AED 225 / Hour">Studio M (Up to
+                                            7 Musicians) - AED 225 / Hour</button>
+                                        <button type="button" class="dd-item"
+                                            data-dd-item="Studio S (Single Musician) - AED 175 / Hour">Studio S (Single
+                                            Musician) - AED 175 / Hour</button>
+                                        <button type="button" class="dd-item"
+                                            data-dd-item="Studio S (Up to 7 Musicians) - AED 225 / Hour">Studio S (Up to
+                                            7 Musicians) - AED 225 / Hour</button>
+                                    </div>
+                                    <input type="hidden" id="studioValue" />
+                                </div>
+
+                                <!-- Booking notes -->
+                                <div>
+                                    <label class="block text-white/70 text-[11px] mb-2">Booking Notes *</label>
+                                    <textarea class="book-input h-[130px] md:h-[160px]"
+                                        placeholder="Let us know how many members are in your band, what instruments you will carry, and what other technical requirements you have. Be as detailed as possible so we can assist you best and set up before your arrival."></textarea>
+                                </div>
+
+                                <!-- Band name dropdown -->
+                                <div class="relative" data-dd="band">
+                                    <label class="block text-white/70 text-[11px] mb-2">Band Name *</label>
+                                    <button class="dd-btn" type="button" data-dd-btn>
+                                        <span data-dd-label>Select Band *</span>
+                                        <span class="text-white/50">▾</span>
+                                    </button>
+                                    <div class="dd-menu hidden" data-dd-menu>
+                                        <button type="button" class="dd-item" data-dd-item="Band A">Band A</button>
+                                        <button type="button" class="dd-item" data-dd-item="Band B">Band B</button>
+                                        <button type="button" class="dd-item" data-dd-item="Band C">Band C</button>
+                                    </div>
+                                    <input type="hidden" id="bandValue" />
+                                </div>
+
+                                <!-- Guests -->
+                                <div class="bg-[#0E1319] border border-white/10 p-4">
+                                    <p class="text-white/70 text-[11px]">Are you bringing guests (aside from the
+                                        band/musicians using the studio)? *</p>
+                                    <label class="mt-2 flex items-center gap-2 text-white/65 text-[11px]">
+                                        <input type="radio" name="guests" value="no" checked /> No
+                                    </label>
+                                    <label class="mt-2 flex items-center gap-2 text-white/65 text-[11px]">
+                                        <input type="radio" name="guests" value="yes" /> Yes
+                                    </label>
+
+                                    <div class="mt-3 text-white/45 text-[10px] leading-[14px]">
+                                        <p>* Please be reminded the total maximum capacity for each studio is as
+                                            follows:</p>
+                                        <p class="mt-2">Studio S: 16 musicians, 2 guests</p>
+                                        <p>Studio M: 17 musicians, 2 guests</p>
+                                    </div>
+                                </div>
+
+                                <!-- Selected slot (read only) -->
+                                <div class="bg-[#0E1319] border border-white/10 p-4">
+                                    <p class="text-white/70 text-[11px]">Selected slot</p>
+                                    <p id="selectedSlotText" class="mt-1 text-white/85 text-[12px] font-semibold">None
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============ TAB 3: NEW MEMBER ============ -->
+                    <div class="book-panel hidden" data-book-panel="member">
+                        <div class="bg-[#0E1319] border border-white/10 p-5 md:p-6">
+                            <ul class="text-white/60 text-[11px] md:text-[12px] leading-[18px] space-y-2">
+                                <li>* Does not apply in conjunction with any other offer.</li>
+                                <li>Is this the first-time you and your band will rehearse at our studio?</li>
+                                <li>We’ve got great news for you! You get <span class="text-white font-semibold">10%
+                                        off</span> your first booking.</li>
+                                <li><span class="text-primary font-semibold">Contact us to avail the offer.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slots Modal -->
+    <div id="slotsModal" class="slots-modal" aria-hidden="true">
+        <div class="slots-backdrop" data-slots-close="1"></div>
+
+        <div class="slots-dialog" role="dialog" aria-modal="true">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+                <p id="slotsTitle" class="text-white/85 text-[12px] font-semibold">—</p>
+                <button type="button" class="text-white/70 hover:text-white" data-slots-close="1"
+                    aria-label="Close">✕</button>
+            </div>
+
+            <div class="p-4">
+                <div id="slotsGrid" class="grid grid-cols-3 gap-2"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footerMount"></div>
+
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.getElementById("studioCarousel");
+            if (!track) return;
+
+            // only on small screens
+            if (window.matchMedia("(min-width: 768px)").matches) return;
+
+            const active = track.querySelector(".studio-card--active");
+            const target = active || track.children[1]; // fallback: middle card
+            if (!target) return;
+
+            const left = target.offsetLeft - (track.clientWidth - target.clientWidth) / 2;
+            track.scrollLeft = left;
+        });
+    </script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/footer.js"></script>
+    <script src="/js/rehearsal-book-now.js"></script>
+</body>
+
+</html>
