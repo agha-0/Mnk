@@ -1,0 +1,53 @@
+/* /css/toast.css */
+
+.toast-root {
+    position: fixed;
+    right: 16px;
+    top: 16px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    width: min(360px, calc(100vw - 32px));
+    background: #0E1319;
+    border: 1px solid rgba(255, 255, 255, .12);
+    padding: 12px 14px;
+    color: rgba(255, 255, 255, .85);
+    font-size: 12px;
+    line-height: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    transform: translateY(0);
+    opacity: 1;
+    transition: 250ms ease;
+}
+
+.toast strong {
+    color: #fff;
+}
+
+.toast--ok {
+    border-color: rgba(255, 255, 255, .18);
+}
+
+.toast--success {
+    border-color: rgba(34, 197, 94, .45);
+    /* green */
+}
+
+.toast--error {
+    border-color: rgba(239, 68, 68, .45);
+    /* red */
+}
+
+.toast--info {
+    border-color: rgba(59, 130, 246, .45);
+    /* blue */
+}
+
+.toast--warn {
+    border-color: rgba(245, 95, 24, .45);
+    /* orange */
+}
