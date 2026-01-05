@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MNK — Checkout</title>
+
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/toast.css" />
+    <link rel="stylesheet" href="/css/checkout.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/tailwind-config.js"></script>
+</head>
+
+<body class="page-bg">
+    <div id="headerMount"></div>
+
+    <section class="md:py-[60px] py-[34px]">
+        <div class="main-container">
+            <div class="">
+                <!-- TOP GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 bg-mainBg px-[22px] md:px-[30px] md:py-5 py-4">
+                    <!-- Your Details -->
+                    <div class=" space-y-[10px]">
+                        <h2
+                            class="font-semibold text-white md:text-[40px] text-[30px] md:leading-[50px] leading-[40px]">
+                            Your Details
+                        </h2>
+
+                        <div class="">
+                            <div class="grid sm:grid-cols-[100px_1fr] grid-cols-[70px_1fr] gap-2.5 py-1.5 items-center">
+                                <p class="text-white font-bold sm:text-base text-sm sm:leading-[30px] leading-[24px]">
+                                    Name:</p>
+                                <p class="text-paragraph sm:text-base text-sm break-words" id="custName">Zain</p>
+                            </div>
+                            <div class="grid sm:grid-cols-[100px_1fr] grid-cols-[70px_1fr] gap-2.5 py-1.5 items-center">
+                                <p class="text-white font-bold sm:text-base text-sm sm:leading-[30px] leading-[24px]">
+                                    Phone:</p>
+                                <p class="text-paragraph sm:text-base text-sm break-words" id="custPhone">+971500000000
+                                </p>
+                            </div>
+                            <div class="grid sm:grid-cols-[100px_1fr] grid-cols-[70px_1fr] gap-2.5 py-1.5 items-center">
+                                <p class="text-white font-bold sm:text-base text-sm sm:leading-[30px] leading-[24px]">
+                                    Email:</p>
+                                <p class="text-paragraph sm:text-base text-sm break-words" id="custEmail">
+                                    onlyzain@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Address -->
+                    <div class=" space-y-[10px]">
+                        <h2
+                            class="font-semibold text-white md:text-[40px] text-[30px] md:leading-[50px] leading-[40px]">
+                            Billing Address
+                        </h2>
+
+                        <form id="checkoutForm" action="/telr" method="POST" novalidate>
+                            <!-- Emirates -->
+                            <div class="mnk-field relative" data-field="emirates">
+                                <label class="block text-white text-[13px] mb-2">
+                                    Emirate *
+                                </label>
+
+                                <div class="relative" data-dd="emirates">
+                                    <button
+                                        class="dd-btn mnk-focusable focus:!border-primary focus:ring-none focus:outline-none"
+                                        type="button" data-dd-btn>
+                                        <span data-dd-label>Select City</span>
+                                        <span class="text-white/50">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 9L12 16L19 9" stroke="#86919E" stroke-width="2" />
+                                            </svg>
+                                        </span>
+                                    </button>
+
+                                    <div class="dd-menu hidden" data-dd-menu>
+                                        <button type="button" class="dd-item" data-dd-item="Dubai">Dubai</button>
+                                        <button type="button" class="dd-item" data-dd-item="Abu Dhabi">Abu
+                                            Dhabi</button>
+                                        <button type="button" class="dd-item" data-dd-item="Sharjah">Sharjah</button>
+                                        <button type="button" class="dd-item" data-dd-item="Umm al-Qaiwain">Umm
+                                            al-Qaiwain</button>
+                                        <button type="button" class="dd-item" data-dd-item="Fujairah">Fujairah</button>
+                                        <button type="button" class="dd-item" data-dd-item="Ajman">Ajman</button>
+                                        <button type="button" class="dd-item" data-dd-item="Ra's al-Khaimah">Ra's
+                                            al-Khaimah</button>
+                                    </div>
+
+                                    <input type="hidden" name="emirates" id="emiratesValue" />
+                                </div>
+
+                                <span class="mnk-error">This field is required</span>
+                            </div>
+
+                            <div class="mnk-field relative mt-4" data-field="area">
+                                <label class="block text-white text-[13px] mb-2">
+                                    Enter Area *
+                                </label>
+                                <input class="book-input focus:!border-primary focus:ring-none focus:outline-none"
+                                    type="text" name="area" id="area" placeholder="Enter your area"
+                                    autocomplete="address-level2" />
+                                <span class="mnk-error">This field is required</span>
+                            </div>
+
+                            <div class="mnk-field relative mt-4" data-field="street">
+                                <label class="block text-white text-[13px] mb-2">
+                                    Street Name *
+                                </label>
+                                <input class="book-input focus:!border-primary focus:ring-none focus:outline-none"
+                                    type="text" name="street" id="street" placeholder="Enter your street name"
+                                    autocomplete="address-line1" />
+                                <span class="mnk-error">This field is required</span>
+                            </div>
+
+                            <div class="mnk-field relative mt-4" data-field="building">
+                                <label class="block text-white text-[13px] mb-2">
+                                    Building Name & Apartment No / Villa No *
+                                </label>
+                                <input class="book-input focus:!border-primary focus:ring-none focus:outline-none"
+                                    type="text" name="building" id="building" placeholder="Type here..."
+                                    autocomplete="address-line2" />
+                                <span class="mnk-error">This field is required</span>
+                            </div>
+
+                            <!-- Hidden totals (wire later) -->
+                            <input type="hidden" id="totalprice" name="totalprice" value="183.75" />
+                            <input type="hidden" id="discountprice" name="discount" value="0" />
+                            <input type="hidden" id="sub_total" name="sub_total" value="175" />
+                            <input type="hidden" id="promoCodeText" name="promo_code" value="" />
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Booking Details -->
+                <div class="mt-6 bg-mainBg">
+                    <div class=" px-[22px] md:px-[30px] md:py-5 py-4">
+                        <h2
+                            class="font-semibold text-white md:text-[40px] text-[30px] md:leading-[50px] leading-[40px]">
+                            Booking Details
+                        </h2>
+                    </div>
+
+                    <div class="border-b border-[#454B53]">
+                        <div class="overflow-x-auto ">
+                            <table class="checkout-table !mb-2">
+                                <thead
+                                    class="bg-secondary text-white font-robotto md:text-[24px] text-base md:leading-[28px] leading-[22px]">
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Studio</th>
+                                        <th>Description</th>
+                                        <th class="">Price</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        class="text-paragraph sm:text-[16px] sm:leading-[28px] text-[14px] leading-[22px] border-b border-[#454B53]">
+                                        <td class="">Book Single Sessions</td>
+                                        <td class="">Studio M (Single Musician) - Rehearsal</td>
+                                        <td>
+                                            <div>
+                                                <p class="">10-Dec-2025 5:00 PM - 6:00 PM</p>
+                                            </div>
+                                        </td>
+
+                                        <td class="">AED 175</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Totals: inside the same table wrapper, but not part of table columns/rows -->
+                        <div class="sm:px-[30px] px-4 pb-4 sm:grid grid-cols-5">
+                            <div class="sm:col-span-3 sm:block hidden"></div>
+                            <div class="mt-2 grid grid-cols-[1fr_auto] gap-4 sm:col-span-2 px-[10px] !font-normal">
+                                <div
+                                    class="space-y-[11px] text-white sm:leading-[34px] leading-[22px] sm:text-base text-sm">
+                                    <p>Sub-Total</p>
+                                    <p>Discount</p>
+                                    <p>Grand Total (Excl. VAT)</p>
+                                    <p>5% VAT</p>
+                                    <p class="">Grand Total (Incl. VAT)</p>
+                                </div>
+
+                                <div
+                                    class="space-y-[11px] text-left sm:leading-[34px] leading-[22px] text-paragraph sm:text-base text-sm">
+                                    <p>AED 175.00</p>
+                                    <p>AED 0.00</p>
+                                    <p>AED 175.00</p>
+                                    <p>AED 8.75</p>
+                                    <p class="text-white font-semibold">AED 183.75</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="px-[22px] md:px-[30px] md:py-5 py-4" id="termsBlock">
+                        <label class="flex items-center gap-2.5 select-none">
+                            <input type="checkbox" id="termsCheck"
+                                class="mt-[3px] w-[24px] h-[24px] accent-[var(--c-primary)] cursor-pointer !rounded-[5px]" />
+                            <span class="sm:text-base text-sm sm:leading-[28px] leading-[24px] text-white">
+                                Please select the checkbox to indicate your acceptance of the
+                                <button type="button" class="text-primary font-semibold underline" id="openTermsBtn">
+                                    terms &amp; conditions
+                                </button>.
+                            </span>
+                        </label>
+
+                        <p id="termsError" class="hidden mt-2 text-[12px] text-red-500">
+                            Please accept the terms &amp; conditions to continue.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- Actions -->
+                <div class="mt-5 flex items-center justify-end gap-3 flex-wrap">
+                    <button type="button"
+                        class="bg-secondary inline-flex items-center justify-center rounded-full px-6 py-[18px] sm:!text-base !text-sm !leading-[18px] !font-bold !text-white"
+                        id="cancelBtn">
+                        Cancel
+                    </button>
+
+                    <button type="button"
+                        class="bg-primary rounded-full !px-6 !py-[7px] !flex !flex-col !items-center sm:!text-base !text-sm !leading-[18px] !font-bold"
+                        id="proceedBtn">
+                        Checkout<br />
+                        <span class="opacity-95">Proceed to Telr</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Modal  -->
+    <div id="termsModal" class="slots-modal" aria-hidden="true">
+        <div class="slots-backdrop" data-terms-close="1"></div>
+
+        <div class="slots-dialog checkout-terms-dialog" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+                <p id="termsTitle"
+                    class="text-white sm:text-[24px] text-[16px] sm:leading-[28px] leading-[20px] font-semibold">
+                    Terms &amp; Conditions
+                </p>
+                <button type="button" class="text-white font-bold hover:text-white" data-terms-close="1"
+                    aria-label="Close">✕</button>
+            </div>
+
+            <!-- Body  -->
+            <div class="p-4 checkout-terms-body overflow-y-auto max-h-[70vh]">
+                <div class="space-y-6 text-[13px] md:text-[14px] leading-[20px] md:leading-[24px] text-white/80">
+                    <!-- Rates & Payment -->
+                    <div>
+                        <h2
+                            class="text-white sm:text-[24px] text-[16px] sm:leading-[28px] leading-[20px] font-semibold mb-2">
+                            Rates &amp; Payment</h2>
+                        <ul class="list-disc pl-5 space-y-1 text-white sm:text-base text-sm">
+                            <li>Payment for the booking must be received before the booking’s commencement date.</li>
+                            <li>
+                                Should you need to cancel, you must advise us as soon as possible prior to booking date.
+                                We do not offer refunds but will offer store credit valid for 6 months.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Booking Duration -->
+                    <div>
+                        <h4
+                            class="text-white sm:text-[24px] text-[16px] sm:leading-[28px] leading-[20px] font-semibold mb-2">
+                            Booking Duration</h4>
+                        <ul class="list-disc pl-5 space-y-1 text-white sm:text-base text-sm">
+                            <li>
+                                Overtime is calculated in 15-minute increments beyond the contracted end-time and
+                                charged
+                                as per the MNK Studios rate sheet.
+                            </li>
+                            <li>
+                                Please avoid arriving late. Rental time begins and ends promptly at the scheduled time.
+                            </li>
+                            <li>Set up and take down are included within your rental period.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Room & Equipment -->
+                    <div>
+                        <h4
+                            class="text-white sm:text-[24px] text-[16px] sm:leading-[28px] leading-[20px] font-semibold mb-2">
+                            Room &amp; Equipment</h4>
+                        <ul class="list-disc pl-5 space-y-1 text-white sm:text-base text-sm">
+                            <li>Rooms and equipment are sanitized, cleaned, and reset before your session.</li>
+                            <li>
+                                Equipment is provided in good working order, with no guarantees of suitability
+                                for specific purposes.
+                            </li>
+                            <li>
+                                MNK Studios is not liable for events outside its control such as power outages,
+                                weather, or emergencies. A prorated refund will be issued if applicable.
+                            </li>
+                            <li>MNK Studios is not responsible for damage to equipment you bring in.</li>
+                            <li>
+                                You are responsible for ensuring compatibility of your powered equipment with UAE
+                                standard 240V supply.
+                            </li>
+                            <li>
+                                You are liable for any damage caused to MNK Studios equipment during your booking,
+                                including full replacement or repair cost.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Terms of Use -->
+                    <div>
+                        <h4
+                            class="text-white sm:text-[24px] text-[16px] sm:leading-[28px] leading-[20px] font-semibold mb-2">
+                            Terms of Use</h4>
+                        <ul class="list-disc pl-5 space-y-1 text-white sm:text-base text-sm">
+                            <li>
+                                An MNK Studios representative will assist with setup and take-down. Engineers for full
+                                sessions are available at additional cost.
+                            </li>
+                            <li>Food and drink are not permitted except bottled water.</li>
+                            <li>
+                                Use of studios and equipment is at your own risk. Legal claims are waived unless caused
+                                by MNK Studios staff.
+                            </li>
+                            <li>You agree to leave the studio in the same condition as upon arrival.</li>
+                            <li>
+                                You are responsible for any legal infractions incurred during your booking period.
+                            </li>
+                            <li>
+                                MNK Studios is not liable for loss, injury, or accidents involving you or your party.
+                            </li>
+                            <li>
+                                Studio photographs may be taken for marketing purposes unless requested otherwise.
+                            </li>
+                            <li>
+                                MNK Studios reserves the right to terminate the booking if unsafe or negligent activity
+                                is observed.
+                            </li>
+                            <li>
+                                You are responsible for ensuring all participants are of legal age for activities
+                                conducted.
+                            </li>
+                            <li>
+                                MNK Studios reserves the right to stop activities if legal age violations are
+                                discovered.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal / Arbitration -->
+                    <div>
+                        <h4
+                            class="text-white sm:text-[24px] text-[16px] sm:leading-[28px] leading-[20px] font-semibold mb-2">
+                            Legal / Arbitration</h4>
+                        <ul class="list-disc pl-5 space-y-1 text-white sm:text-base text-sm">
+                            <li>
+                                Any disputes shall fall under the exclusive jurisdiction of the DIFC Courts and be
+                                governed
+                                by the laws of the Emirate of Dubai.
+                            </li>
+                            <li>
+                                By renting studio space, you acknowledge and accept these Terms &amp; Conditions.
+                                This agreement applies to all future bookings.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer buttons -->
+                <div class="mt-6 flex items-center justify-end gap-3">
+                    <button type="button"
+                        class="book-buy !px-5 !py-[10px] !bg-transparent !text-white/80 !border-white/20"
+                        data-terms-close="1">
+                        Close
+                    </button>
+
+                    <button id="agreeTermsBtn" type="button" class="book-buy !bg-primary !px-6 !py-[10px]">
+                        I Agree
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerMount"></div>
+
+    <!-- Toast Root -->
+    <div id="toastRoot" class="toast-root"></div>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/footer.js"></script>
+    <script src="/js/toast.js"></script>
+
+    <script src="/js/buy-now.js"></script>
+</body>
+
+</html>
