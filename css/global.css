@@ -570,8 +570,45 @@ input::-ms-reveal {
     color: var(--c-primary);
 }
 
+/* Make whole card feel clickable */
+.studio-card {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+/* Active card should look like hover-state */
 .studio-card--active {
-    border: 2px solid var(--c-primary) !important;
+    border-color: var(--c-primary);
+}
+
+/* Hover/focus: apply same styling as active */
+@media (hover: hover) and (pointer: fine) {
+    .studio-card:hover {
+        border-color: var(--c-primary);
+        transform: translateY(-1px);
+    }
+}
+
+.studio-card:focus-within {
+    border-color: var(--c-primary);
+}
+
+/* Button becomes "filled" when card is hovered/active/focused */
+.studio-card--active .studio-btn--outline,
+.studio-card:focus-within .studio-btn--outline {
+    background: var(--c-primary);
+    color: #fff;
+    border-color: var(--c-primary);
+}
+
+/* Hover fill (desktop) */
+@media (hover: hover) and (pointer: fine) {
+    .studio-card:hover .studio-btn--outline {
+        background: var(--c-primary);
+        color: #fff;
+        border-color: var(--c-primary);
+    }
 }
 
 /* Studios: hide scrollbar + smoother swipe */
