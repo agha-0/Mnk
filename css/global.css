@@ -1036,19 +1036,23 @@ input::-ms-reveal {
     content: "";
     position: absolute;
     left: 50%;
-    top: 105%;
-    width: 65%;
-    height: 50%;
-    transform: translate(-50%, -50%);
+    top: 95%;
+    width: 80%;
+    height: 35%;
+    transform: translateX(-50%);
     pointer-events: none;
     z-index: 0;
 
-    /* warm glow */
     background: radial-gradient(ellipse at center,
-            rgba(172, 113, 61, 0.28) 0%,
-            rgba(172, 113, 61, 0.14) 15%,
-            rgba(7, 18, 28, 0.00) 50%);
+            rgba(255, 120, 45, 0.28) 0%,
+            rgba(255, 120, 45, 0.18) 22%,
+            rgba(255, 120, 45, 0.10) 40%,
+            rgba(7, 18, 28, 0.00) 65%);
+
+    filter: blur(40px);
 }
+
+
 
 /* ensure your content stays above the glow */
 .space-rental-panel>* {
