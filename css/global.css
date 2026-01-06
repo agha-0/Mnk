@@ -1023,3 +1023,35 @@ input::-ms-reveal {
 .checkout-terms-dialog {
     width: min(720px, calc(100% - 24px));
 }
+
+/* Space Rental */
+.space-rental-panel {
+    background: var(--c-main-bg);
+    position: relative;
+    overflow: hidden;
+    /* keeps glow inside the card */
+}
+
+.space-rental-panel::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 105%;
+    width: 65%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+
+    /* warm glow */
+    background: radial-gradient(ellipse at center,
+            rgba(172, 113, 61, 0.28) 0%,
+            rgba(172, 113, 61, 0.14) 15%,
+            rgba(7, 18, 28, 0.00) 50%);
+}
+
+/* ensure your content stays above the glow */
+.space-rental-panel>* {
+    position: relative;
+    z-index: 1;
+}
