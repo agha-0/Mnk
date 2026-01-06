@@ -4,7 +4,7 @@ const navLinks = [
 
   {
     label: "Recording Studios",
-    href: "/recording-studios/",
+    // href: "/recording-studios/",
     className: "hover:text-primary",
     children: [
       { label: "Studio 1", href: "/recording-studios/studio-1/", className: "hover:text-primary" },
@@ -101,9 +101,13 @@ function renderMobileSideNav(navItems, mountId = "mobileSideNav") {
           </a>
         `;
       }
-
-      return `
+      if (href) {
+        return `
         <a class="block py-2 text-white ${cls}" href="${href}">${label}</a>
+      `;
+      }
+      return `
+        <a class="block py-2 text-white ${cls}">${label}</a>
       `;
     }
 
