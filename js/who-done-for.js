@@ -1,40 +1,40 @@
 // js/who-done-for.js
 
 const artists = [
-    "DJ BLISS",
-    "ATIF ASLAM",
-    "MAHER ZAIN",
-    "VALERIYA",
-    "KADIM AL SAHIR",
-    "AMY ROKO",
+  "DJ BLISS",
+  "ATIF ASLAM",
+  "MAHER ZAIN",
+  "VALERIYA",
+  "KADIM AL SAHIR",
+  "AMY ROKO",
 ];
 
 // put your real image filenames here:
 const clients = [
-    "/assets/images/clients/viu.png",
-    "/assets/images/clients/samsung.png",
-    "/assets/images/clients/netflix.png",
-    "/assets/images/clients/seaworld.png",
-    "/assets/images/clients/azizi.png",
-    "/assets/images/clients/etisalat.png",
+  "/assets/images/clients/viu.png",
+  "/assets/images/clients/samsung.png",
+  "/assets/images/clients/netflix.png",
+  "/assets/images/clients/seaworld.png",
+  "/assets/images/clients/azizi.png",
+  "/assets/images/clients/etisalat.png",
 ];
 
 function escapeHtml(str = "") {
-    return str.replace(/[&<>"']/g, (m) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-    }[m]));
+  return str.replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[m]));
 }
 
 function clientItem(src) {
-    const safeSrc = escapeHtml(src);
-    const alt = safeSrc.split("/").pop().split(".")[0].replace(/[-_]/g, " ");
+  const safeSrc = escapeHtml(src);
+  const alt = safeSrc.split("/").pop().split(".")[0].replace(/[-_]/g, " ");
 
-    return `
-    <div class="who-item-box flex items-center justify-center
+  return `
+    <div class="who-item-box flex items-center justify-center grayscale hover:grayscale-0
                 md:w-[200px] md:h-[90px]
                 w-[140px] h-[56px]
                 shrink-0">
@@ -45,10 +45,10 @@ function clientItem(src) {
 }
 
 function artistItem(name) {
-    const safe = escapeHtml(name);
+  const safe = escapeHtml(name);
 
-    return `
-    <div class="who-item-box flex items-center justify-center
+  return `
+    <div class="who-item-box flex items-center justify-center grayscale hover:grayscale-0
                 md:w-[200px] md:h-[90px]
                 w-[160px] h-[56px]
                 shrink-0">
@@ -65,20 +65,20 @@ function artistItem(name) {
  * - CSS animates track from 0 to -50%
  */
 function renderMarquee(trackSelector, itemsHtml) {
-    const track = document.querySelector(trackSelector);
-    if (!track) return;
+  const track = document.querySelector(trackSelector);
+  if (!track) return;
 
-    const gapClass = "gap-3 md:gap-4"; // spacing between boxes
-    track.className = `marquee-track ${gapClass}`;
+  const gapClass = "gap-3 md:gap-4"; // spacing between boxes
+  track.className = `marquee-track ${gapClass}`;
 
-    // Duplicate the list for seamless looping
-    track.innerHTML = itemsHtml + itemsHtml;
+  // Duplicate the list for seamless looping
+  track.innerHTML = itemsHtml + itemsHtml;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const clientsHtml = clients.map(clientItem).join("");
-    const artistsHtml = artists.map(artistItem).join("");
+  const clientsHtml = clients.map(clientItem).join("");
+  const artistsHtml = artists.map(artistItem).join("");
 
-    renderMarquee('[data-track="clients"]', clientsHtml);
-    renderMarquee('[data-track="artists"]', artistsHtml);
+  renderMarquee('[data-track="clients"]', clientsHtml);
+  renderMarquee('[data-track="artists"]', artistsHtml);
 });
