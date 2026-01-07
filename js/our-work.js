@@ -1,4 +1,4 @@
-// js/portfolio.js
+// js/our-work.js
 
 "use strict";
 
