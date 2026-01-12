@@ -234,6 +234,7 @@ input[type="checkbox"]:checked::after {
     border-radius: 0 !important;
 }
 
+
 .theme-btn {
     padding: 16px 24px;
     background: #0D1014;
