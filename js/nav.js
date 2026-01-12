@@ -28,7 +28,7 @@ const navLinks = [
   },
 
   { label: "Our Work", href: "/our-work/", className: "hover:text-primary" },
-  { label: "Contact Us", href: "/contact/", className: "hover:text-primary" },
+  { label: "Contact Us", href: "/contact-us/", className: "hover:text-primary" },
 
   { label: "Book Rehearsals", href: "/book-rehearsals/", className: "hover:text-primary !text-primary" },
 ];

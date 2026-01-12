@@ -177,6 +177,63 @@ input::-ms-reveal {
     display: none;
 }
 
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(40deg);
+    top: 3px;
+    left: 8px;
+}
+
+.iti {
+    width: 100%;
+}
+
+.iti__country-list {
+    z-index: 9999;
+}
+
+.iti__country {
+    padding-right: 0 !important;
+}
+
+.iti__search-input {
+    min-height: 40px !important;
+    padding-left: 10px !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+.iti__country:hover {
+    background-color: var(--c-secondary) !important;
+}
+
+.iti .iti__search-input {
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+.iti .iti__search-input:focus,
+.iti .iti__search-input:focus-visible {
+    border-color: var(--c-primary) !important;
+    border-radius: 0 !important;
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.iti__dropdown-content {
+    background-color: var(--c-main-bg) !important;
+    border: 1px solid var(--c-primary) !important;
+    border-radius: 0 !important;
+}
+
 .theme-btn {
     padding: 16px 24px;
     background: #0D1014;
@@ -997,8 +1054,13 @@ input::-ms-reveal {
 
 
 /* =========================
-   FIELD ERROR (bottom-right)
+   FIELD ERROR (no overlap)
 ========================= */
+.mnk-field {
+    position: relative;
+}
+
+/* error text */
 .mnk-field .mnk-error {
     display: none;
     position: absolute;
@@ -1014,6 +1076,13 @@ input::-ms-reveal {
 
 .mnk-field.is-error .book-input,
 .mnk-field.is-error .dd-btn {
+    border-color: #ef4444 !important;
+}
+
+/* Red border for all inputs/textarea inside error field */
+.mnk-field.is-error input,
+.mnk-field.is-error textarea,
+.mnk-field.is-error button.dd-btn {
     border-color: #ef4444 !important;
 }
 
