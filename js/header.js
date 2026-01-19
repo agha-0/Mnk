@@ -42,6 +42,7 @@ function setupSideMenu() {
         setTimeout(() => overlay.classList.add("hidden"), 300);
     };
 
+    window.mnkCloseSideMenu = close;
     openBtn.addEventListener("click", open);
     closeBtn.addEventListener("click", close);
     overlay.addEventListener("click", close);

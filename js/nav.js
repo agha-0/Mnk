@@ -104,8 +104,7 @@ function renderUserMenuDesktop() {
 
 function renderUserMenuMobile() {
   const isLoggedIn = getLoginState();
-
-  const itemCls = "block py-3 text-white/90 border-t border-white/10 hover:text-primary text-left w-full";
+  const itemCls = "block py-3 text-white/70 border-t border-white/10 hover:text-primary text-left w-full";
 
   const items = !isLoggedIn
     ? `
@@ -119,12 +118,26 @@ function renderUserMenuMobile() {
     `;
 
   return `
-    <div class="mt-5 pt-3 border-t border-white/10">
-      <div class="flex items-center gap-2">
-        <img src="/assets/images/UserIcon.svg" alt="User" class="w-[20px] h-[20px]" />
-        <p class="text-white text-[14px] font-semibold">Account</p>
-      </div>
-      <div class="mt-2">
+    <div class="mt-3">
+      <button
+        type="button"
+        class="w-full flex items-center justify-between py-2 text-white hover:text-primary"
+        data-acc-btn="account"
+      >
+        <span class="inline-flex items-center gap-2">
+          <img src="/assets/images/UserIcon.svg" alt="User" class="w-[20px] h-[20px]" />
+          <span>Account</span>
+        </span>
+
+        <span class="transition-transform duration-200 text-[#7C8693]" data-acc-icon="account">
+          <svg class="w-[17px] h-[11px]" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.730469 0.683945L8.23047 8.68395L15.7305 0.683945"
+              stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+      </button>
+
+      <div class="hidden text-[13px] font-medium text-white" data-acc-panel="account">
         ${items}
       </div>
     </div>
@@ -165,6 +178,7 @@ function bindUserMenuEventsOnce() {
       const which = authOpen.getAttribute("data-auth-open");
       closeAllDesktopPanels();
       if (typeof window.mnkOpenAuthModal === "function") window.mnkOpenAuthModal(which);
+      if (typeof window.mnkCloseSideMenu === "function") window.mnkCloseSideMenu();
       return;
     }
 
@@ -175,6 +189,7 @@ function bindUserMenuEventsOnce() {
       setLoginState(false);
       if (typeof window.mnkToast === "function") window.mnkToast("Logged out.", "success");
       if (typeof window.mnkRerenderNav === "function") window.mnkRerenderNav();
+      if (typeof window.mnkCloseSideMenu === "function") window.mnkCloseSideMenu();
       return;
     }
 

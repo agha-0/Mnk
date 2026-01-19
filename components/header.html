@@ -21,21 +21,28 @@
 <!-- Mobile overlay + side drawer -->
 <div id="menuOverlay" class="fixed inset-0 z-[60] hidden bg-black/60 opacity-0 transition-opacity duration-300"></div>
 
-<aside id="sideMenu"
-    class="fixed right-0 top-0 z-[70] h-full 2xs:w-[375px] w-[320px] translate-x-full bg-[#0b0f14] border-l border-white/10 transition-transform duration-300 px-[15px] py-5">
-    <div class="flex items-center justify-between pb-[52px]">
+<aside id="sideMenu" class="fixed right-0 top-0 z-[70] h-full 2xs:w-[375px] w-[320px]
+         translate-x-full bg-[#0b0f14] border-l border-white/10
+         transition-transform duration-300 px-[15px] py-5
+         flex flex-col">
+
+    <!-- header (fixed) -->
+    <div class="flex items-center justify-between pb-[52px] flex-none">
         <a href="/" class="flex items-center gap-2">
             <img src="/assets/images/logo.png" alt="MNK" class="w-[62px] h-[90px]">
         </a>
 
-        <button id="closeMenuBtn" class="" aria-label="Close menu">
+        <button id="closeMenuBtn" aria-label="Close menu">
             <img src="/assets/images/CrossIcon.png" alt="MNK" class="w-[40px] h-[40px]">
         </button>
     </div>
 
-    <!-- Mobile nav rendered here -->
-    <nav id="mobileSideNav" class="text-[16px] font-semibold text-white font-robotto"></nav>
+    <!-- ✅ scroll area -->
+    <nav id="mobileSideNav"
+        class="flex-1 min-h-0 overflow-y-auto pr-1 text-[16px] font-semibold text-white font-robotto">
+    </nav>
 </aside>
+
 
 <!-- AUTH MODALS (add once, e.g. in components/header.html after </aside>) -->
 
