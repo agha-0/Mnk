@@ -497,20 +497,10 @@ input[type="checkbox"]:checked::after {
     top: 10px;
     right: 10px;
     z-index: 2;
-    width: 34px;
-    height: 34px;
     border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.16);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-}
-
-.portfolio-modal__close img {
-    width: 14px;
-    height: 14px;
-    object-fit: contain;
 }
 
 /* optional utility if you need it elsewhere:
@@ -1128,4 +1118,33 @@ input[type="checkbox"]:checked::after {
 .space-rental-panel>* {
     position: relative;
     z-index: 1;
+}
+
+/* =========================
+   OUR WORK - DETAIL MODAL FIX
+========================= */
+#workDetailModal {
+    z-index: 10000 !important;
+    /* detail below video modal */
+}
+
+/* override the global 16:9 dialog sizing only for detail modal */
+#workDetailModal .portfolio-modal__dialog {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    max-height: calc(100vh - 64px) !important;
+    overflow-y: auto !important;
+    margin: 32px auto 0 !important;
+}
+
+@media (max-width: 768px) {
+    #workDetailModal .portfolio-modal__dialog {
+        max-height: calc(100vh - 32px) !important;
+        margin-top: 16px !important;
+    }
+}
+
+/* video modal must be above detail modal */
+#portfolioModal {
+    z-index: 10050 !important;
 }
