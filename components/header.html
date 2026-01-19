@@ -36,3 +36,136 @@
     <!-- Mobile nav rendered here -->
     <nav id="mobileSideNav" class="text-[16px] font-semibold text-white font-robotto"></nav>
 </aside>
+
+<!-- AUTH MODALS (add once, e.g. in components/header.html after </aside>) -->
+
+<!-- Login Modal -->
+<div id="loginModal" class="slots-modal" aria-hidden="true">
+    <div class="slots-backdrop" data-auth-close="1"></div>
+
+    <div class="slots-dialog" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <p id="loginTitle" class="text-white text-[18px] font-semibold">Login</p>
+            <button type="button" class="text-white font-bold" data-auth-close="1" aria-label="Close">✕</button>
+        </div>
+
+        <form id="loginForm" class="p-4 space-y-3" novalidate>
+            <div class="mnk-field relative" data-field="loginEmail">
+                <label class="block text-white text-[13px] mb-2">Email *</label>
+                <input id="loginEmail" type="email"
+                    class="w-full bg-secondary text-paragraph placeholder:text-paragraph/70 h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                    placeholder="Enter email" />
+                <span class="mnk-error">Please enter a valid email</span>
+            </div>
+
+            <div class="mnk-field relative" data-field="loginPassword">
+                <label class="block text-white text-[13px] mb-2">Password *</label>
+                <input id="loginPassword" type="password"
+                    class="w-full bg-secondary text-paragraph placeholder:text-paragraph/70 h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                    placeholder="Enter password" />
+                <span class="mnk-error">Password is required</span>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-primary hover:brightness-110 transition rounded-full py-[12px] text-white font-bold !mt-5">
+                Submit
+            </button>
+
+            <div class="flex items-center justify-between text-[13px]">
+                <a href="/forgot-password/" class="text-white/70 hover:text-primary underline">Forgot password?</a>
+                <button type="button" class="text-white/70 hover:text-primary underline" data-switch-auth="signup">
+                    Don't have an account? Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="slots-modal" aria-hidden="true">
+    <div class="slots-backdrop" data-auth-close="1"></div>
+
+    <div class="slots-dialog" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <p id="signupTitle" class="text-white text-[18px] font-semibold">Sign Up</p>
+            <button type="button" class="text-white font-bold" data-auth-close="1" aria-label="Close">✕</button>
+        </div>
+
+        <form id="signupForm" class="p-4 space-y-3" novalidate>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="mnk-field relative" data-field="firstName">
+                    <label class="block text-white text-[13px] mb-2">First Name *</label>
+                    <input id="suFirstName" type="text"
+                        class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                        placeholder="First name" />
+                    <span class="mnk-error">First name is required</span>
+                </div>
+
+                <div class="mnk-field relative" data-field="lastName">
+                    <label class="block text-white text-[13px] mb-2">Last Name *</label>
+                    <input id="suLastName" type="text"
+                        class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                        placeholder="Last name" />
+                    <span class="mnk-error">Last name is required</span>
+                </div>
+            </div>
+
+            <div class="mnk-field relative" data-field="mobile">
+                <label class="block text-white text-[13px] mb-2">Mobile *</label>
+                <input id="suPhone" type="tel"
+                    class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                    placeholder="Phone number" />
+                <span class="mnk-error">Please enter a valid phone number</span>
+
+                <!-- optional hidden values -->
+                <input type="hidden" id="suDialCode" />
+                <input type="hidden" id="suPhoneE164" />
+            </div>
+
+            <div class="mnk-field relative" data-field="email">
+                <label class="block text-white text-[13px] mb-2">Email *</label>
+                <input id="suEmail" type="email"
+                    class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                    placeholder="Email" />
+                <span class="mnk-error">Please enter a valid email</span>
+            </div>
+
+            <div class="mnk-field relative" data-field="country">
+                <label class="block text-white text-[13px] mb-2">Country *</label>
+                <input id="suCountry" type="text"
+                    class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                    placeholder="Country" />
+                <span class="mnk-error">Country is required</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="mnk-field relative" data-field="password">
+                    <label class="block text-white text-[13px] mb-2">Password *</label>
+                    <input id="suPassword" type="password"
+                        class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                        placeholder="Password" />
+                    <span class="mnk-error">Password is required</span>
+                </div>
+
+                <div class="mnk-field relative" data-field="confirmPassword">
+                    <label class="block text-white text-[13px] mb-2">Confirm Password *</label>
+                    <input id="suConfirmPassword" type="password"
+                        class="w-full bg-secondary text-paragraph h-[46px] px-4 outline-none border border-transparent focus:!border-primary"
+                        placeholder="Confirm" />
+                    <span class="mnk-error">Passwords must match</span>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-primary hover:brightness-110 transition rounded-full py-[12px] text-white font-bold !mt-5">
+                Submit
+            </button>
+
+            <div class="text-[13px] text-right">
+                <button type="button" class="text-white/70 hover:text-primary underline" data-switch-auth="login">
+                    Already have an account? Login
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
