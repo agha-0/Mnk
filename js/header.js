@@ -11,6 +11,11 @@ async function loadHeader() {
     renderDesktopNav(navLinks);
     renderMobileSideNav(navLinks);
 
+    // ✅ render user icon for mobile header
+    if (typeof renderUserMenuMobileHeader === "function") {
+        renderUserMenuMobileHeader();
+    }
+
     setupSideMenu();
     setupSmoothScroll();
 }
@@ -43,6 +48,7 @@ function setupSideMenu() {
     };
 
     window.mnkCloseSideMenu = close;
+
     openBtn.addEventListener("click", open);
     closeBtn.addEventListener("click", close);
     overlay.addEventListener("click", close);

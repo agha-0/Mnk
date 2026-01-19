@@ -102,48 +102,6 @@ function renderUserMenuDesktop() {
   `;
 }
 
-function renderUserMenuMobile() {
-  const isLoggedIn = getLoginState();
-  const itemCls = "block py-3 text-white/70 border-t border-white/10 hover:text-primary text-left w-full";
-
-  const items = !isLoggedIn
-    ? `
-      <button type="button" class="${itemCls}" data-auth-open="login">Login</button>
-      <button type="button" class="${itemCls}" data-auth-open="signup">Sign Up</button>
-    `
-    : `
-      <a class="${itemCls}" href="/profile/">Profile</a>
-      <a class="${itemCls}" href="/my-bookings/">My Bookings</a>
-      <button type="button" class="${itemCls}" data-auth-logout="1">Logout</button>
-    `;
-
-  return `
-    <div class="mt-3">
-      <button
-        type="button"
-        class="w-full flex items-center justify-between py-2 text-white hover:text-primary"
-        data-acc-btn="account"
-      >
-        <span class="inline-flex items-center gap-2">
-          <img src="/assets/images/UserIcon.svg" alt="User" class="w-[20px] h-[20px]" />
-          <span>Account</span>
-        </span>
-
-        <span class="transition-transform duration-200 text-[#7C8693]" data-acc-icon="account">
-          <svg class="w-[17px] h-[11px]" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.730469 0.683945L8.23047 8.68395L15.7305 0.683945"
-              stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </span>
-      </button>
-
-      <div class="hidden text-[13px] font-medium text-white" data-acc-panel="account">
-        ${items}
-      </div>
-    </div>
-  `;
-}
-
 /* =========================
    USER MENU EVENTS (once)
    ========================= */
@@ -201,6 +159,19 @@ function bindUserMenuEventsOnce() {
     if (e.key === "Escape") closeAllDesktopPanels();
   });
 }
+
+function renderUserMenuMobileHeader(mountId = "mobileUserMount") {
+  const mount = document.getElementById(mountId);
+  if (!mount) return;
+
+  // reuse desktop menu HTML (it’s icon + dropdown)
+  mount.innerHTML = renderUserMenuDesktop();
+
+  // make dropdown align nicely on mobile
+  const panel = mount.querySelector("[data-user-menu-panel]");
+  if (panel) panel.classList.add("right-0");
+}
+
 
 /* ---------- Desktop dropdown (hover) ---------- */
 function renderDesktopNav(navItems, mountId = "desktopNav") {
@@ -322,9 +293,7 @@ function renderMobileSideNav(navItems, mountId = "mobileSideNav") {
           </div>
         `;
       })
-      .join("") +
-    // ✅ account section at bottom
-    renderUserMenuMobile();
+      .join("")
 
   const closeAll = () => {
     mount.querySelectorAll("[data-acc-panel]").forEach((p) => p.classList.add("hidden"));
@@ -367,4 +336,5 @@ function renderMobileSideNav(navItems, mountId = "mobileSideNav") {
 window.mnkRerenderNav = function () {
   renderDesktopNav(navLinks);
   renderMobileSideNav(navLinks);
+  renderUserMenuMobileHeader();
 };

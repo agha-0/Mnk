@@ -3,17 +3,23 @@
     <div class="main-container">
         <div class="flex items-center justify-between py-[15px]">
             <a href="/" class="flex items-center gap-2">
-                <img src="/assets/images/logo.png" alt="MNK" class="w-[69px] h-[100px]">
+                <img src="/assets/images/logo.png" alt="MNK" class="md:w-[69px] w-[62px] md:h-[100px] h-[90px]">
             </a>
 
             <!-- Desktop nav -->
             <nav id="desktopNav" class="hidden 2xl:flex items-center gap-6 text-[13px] text-white font-semibold"></nav>
 
-            <!-- Mobile hamburger -->
-            <button id="openMenuBtn" class="2xl:hidden block" aria-label="Open menu">
-                <!-- 3 lines icon -->
-                <img src="/assets/images/ThreeLinesIcon.png" alt="MNK" class="w-[40px] h-[40px]">
-            </button>
+            <!-- Mobile actions -->
+            <div class="2xl:hidden flex items-center gap-2">
+                <!-- Mobile User Menu (same icon behavior as desktop) -->
+                <div id="mobileUserMount"></div>
+
+                <!-- Hamburger -->
+                <button id="openMenuBtn" aria-label="Open menu">
+                    <img src="/assets/images/ThreeLinesIcon.png" alt="MNK" class="w-[40px] h-[40px]">
+                </button>
+            </div>
+
         </div>
     </div>
 </header>

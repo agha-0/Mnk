@@ -1154,3 +1154,9 @@ input[type="checkbox"]:checked::after {
 #portfolioModal {
     z-index: 10050 !important;
 }
+
+/* mobile user dropdown: keep inside screen */
+#mobileUserMount [data-user-menu-panel] {
+    right: 0;
+    left: auto;
+}
