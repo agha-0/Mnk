@@ -139,6 +139,32 @@
         let view = { y: today.getFullYear(), mIndex: today.getMonth() };
         let activeDateKey = keyFromDate(today);
 
+        // nav buttons
+        const prevNavBtn = $("[data-cal-nav='prev']");
+        const nextNavBtn = $("[data-cal-nav='next']");
+
+        // compare only Year+Month
+        function isSameOrBeforeTodayMonth(v) {
+            const todayMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+            const viewMonthStart = new Date(v.y, v.mIndex, 1);
+            return viewMonthStart.getTime() <= todayMonthStart.getTime();
+        }
+
+        function setNavState() {
+            if (!prevNavBtn) return;
+
+            const disablePrev = isSameOrBeforeTodayMonth(view);
+
+            prevNavBtn.disabled = disablePrev;
+            prevNavBtn.classList.toggle("is-disabled", disablePrev);
+
+            // next always enabled (existing behavior)
+            if (nextNavBtn) {
+                nextNavBtn.disabled = false;
+                nextNavBtn.classList.toggle("is-disabled", false);
+            }
+        }
+
         // composite key (date + slotId) so "green" only applies to the right day
         const slotKey = (dateKey, slotId) => `${dateKey}__${slotId}`;
 
@@ -469,12 +495,17 @@
             }
 
             syncSessionUI();
+            setNavState(); // update arrow states based on current view
         }
 
         // nav
         $$("[data-cal-nav]").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const dir = btn.getAttribute("data-cal-nav");
+
+                // block prev navigation when view is current month (or earlier)
+                if (dir === "prev" && isSameOrBeforeTodayMonth(view)) return;
+
                 if (dir === "prev") view.mIndex--;
                 if (dir === "next") view.mIndex++;
 
@@ -494,6 +525,7 @@
         // init
         renderCalendar();
         syncSessionUI();
+        setNavState();
 
         // ---------- Submit validation ----------
         const submitBtn = $("#singleSubmitBtn");

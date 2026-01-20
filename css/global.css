@@ -1160,3 +1160,10 @@ input[type="checkbox"]:checked::after {
     right: 0;
     left: auto;
 }
+
+.cal-nav.is-disabled,
+.cal-nav:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
